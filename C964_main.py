@@ -6,7 +6,8 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
 # Load  dataset
-df = pd.read_csv(".venv/dataset")
+# df = pd.read_csv(".venv/dataset")
+df = pd.read_csv("dataset.csv")
 
 # print(df.columns)
 df = df.dropna(subset=['Speed_of_Impact'])  # Removes rows where Speed_of_Impact is NaN

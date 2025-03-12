@@ -160,6 +160,36 @@ def Scatterplot():
     scatter_matrix(numeric_df, figsize=(6, 6), diagonal='hist')
     plt.show()
 
+def Histogram():
+
+    # Load dataset
+    df = pd.read_csv("dataset.csv")
+
+    # Define speed bins and labels
+    bins = [0, 20, 40, 60, 80, 100, 120]  # Speed bins
+    labels = ["0-20", "20-40", "40-60", "60-80", "80-100", "100-120"]  # Labels for bins
+
+    # Assign speed groups to a new column
+    df['Speed_Group'] = pd.cut(df['Speed_of_Impact'], bins=bins, labels=labels, right=False)
+
+    # Calculate survivability percentage per speed group
+    survival_rates = df.groupby('Speed_Group')['Survived'].mean() * 100  # Convert to percentage
+
+    # Plot histogram
+    plt.figure(figsize=(8, 5))
+    plt.bar(survival_rates.index, survival_rates, width=0.8, color='skyblue', edgecolor='black')
+
+    # Labels and title
+    plt.xlabel("Speed Group (mph)")
+    plt.ylabel("Survivability Percentage (%)")
+    plt.title("Survivability Percentage by Speed Group")
+    plt.ylim(0, 100)  # Keep the y-axis scale from 0 to 100%
+    plt.xticks(rotation=45)  # Rotate x labels for better readability
+    plt.grid(axis="y", linestyle="--", alpha=0.7)
+
+    # Show the plot
+    plt.show()
+
 
 # Create the main window
 window = tk.Tk()
@@ -184,6 +214,8 @@ button.pack()
 button = tk.Button(window, text="LogisticRegression Speed Groupings", command=LogisticRegressionGroupings)
 button.pack()
 button = tk.Button(window, text="Unfiltered Data Scatterplot", command=Scatterplot)
+button.pack()
+button = tk.Button(window, text="Histogram", command=Histogram)
 button.pack()
 button = tk.Button(window, text="Exit", command=window.destroy)
 button.pack()

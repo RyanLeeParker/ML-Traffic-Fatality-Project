@@ -21,6 +21,7 @@ class ConsoleRedirector:
 
 def LogisticRegression51():
 
+    # dataset sourced from https://www.kaggle.com/datasets/himelsarder/road-accident-survival-dataset/data
     df = pd.read_csv("dataset.csv")             # Loads dataset
 
     df = df.dropna(subset=['Speed_of_Impact'])  # Removes rows where Speed_of_Impact is NaN
@@ -64,6 +65,7 @@ def LogisticRegression51():
 
 def LogisticRegressionGroupings():
 
+    # dataset sourced from https://www.kaggle.com/datasets/himelsarder/road-accident-survival-dataset/data
     df = pd.read_csv("dataset.csv")  # Loads dataset
 
     df = df.dropna(subset=['Speed_of_Impact'])  # Removes rows where Speed_of_Impact is NaN
